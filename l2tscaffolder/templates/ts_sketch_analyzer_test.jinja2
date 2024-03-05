@@ -1,5 +1,4 @@
 """Tests for {{ class_name }}Plugin."""
-from __future__ import unicode_literals
 
 import mock
 
@@ -8,17 +7,20 @@ from timesketch.lib.testlib import BaseTest
 from timesketch.lib.testlib import MockDataStore
 
 
-class Test{{ class_name }}Plugin(BaseTest):
+class Test{{ class_name }}(BaseTest):
     """Tests the functionality of the analyzer."""
 
-    def __init__(self, *args, **kwargs):
-        super(Test{{ class_name }}Plugin, self).__init__(*args, **kwargs)
+    @mock.patch(u'timesketch.lib.analyzers.interface.OpenSearchDataStore',
+                MockDataStore)
+    def setUp(self):
+        """Setup for for running the {{ class_name }} analyzer tests."""
+        super().setUp()
 
-    # Mock the Elasticsearch datastore.
+    # Mock the Opensearch datastore.
     @mock.patch(
-        u'timesketch.lib.analyzers.interface.ElasticsearchDataStore',
+        u'timesketch.lib.analyzers.interface.OpenSearchDataStore',
         MockDataStore)
-    def test_analyzer(self):
-        """Test analyzer."""
+    def test_{{ class_name }}_analyzer_class(self):
+        """Test core functionality of the analyzer class."""
         # TODO: Write actual tests here.
         self.assertEqual(True, False)

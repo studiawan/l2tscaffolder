@@ -1,11 +1,9 @@
 """Index analyzer plugin for {{ plugin_name|lower|replace('_',' ')}}."""
-from __future__ import unicode_literals
-
 from timesketch.lib.analyzers import interface
 from timesketch.lib.analyzers import manager
 
 
-class {{ class_name }}Plugin(interface.BaseIndexAnalyzer):
+class {{ class_name }}(interface.BaseIndexAnalyzer):
     """Index analyzer for {{ class_name }}."""
 
     NAME = '{{ plugin_name }}'
@@ -14,9 +12,9 @@ class {{ class_name }}Plugin(interface.BaseIndexAnalyzer):
         """Initialize the Index Analyzer.
 
         Args:
-            index_name: Elasticsearch index name
+            index_name: Opensearch index name
         """
-        super({{ class_name }}Plugin, self).__init__(index_name)
+        super().__init__(index_name)
 
     def run(self):
         """Entry point for the analyzer.
@@ -24,7 +22,7 @@ class {{ class_name }}Plugin(interface.BaseIndexAnalyzer):
         Returns:
             String with summary of the analyzer result
         """
-        # TODO: Add Elasticsearch query to get the events you need.
+        # TODO: Add Opensearch query to get the events you need.
         query = ''
 
         # TODO: Specify what returned fields you need for your analyzer.
@@ -47,4 +45,4 @@ class {{ class_name }}Plugin(interface.BaseIndexAnalyzer):
         return 'String to be returned'
 
 
-manager.AnalysisManager.register_analyzer({{ class_name }}Plugin)
+manager.AnalysisManager.register_analyzer({{ class_name }})
